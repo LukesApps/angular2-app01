@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Current branch - Determine current git branch, store in $currentbranch, and exit if not on a branch
+#if ! currentbranch=$(git symbolic-ref --short -q HEAD)
+#then
+#	echo We are not currently on a branch.
+#	exit 1
+#fi
+
+function checkUncommittedChanges {
+	if ! git diff-index --quiet HEAD --; then
+		echo "There are uncommited changes: commit or stash them before you continue"
+		exit 1
+	fi
+}
+
+# Remote exists - Exit script if remote does not exist
+#git ls-remote --exit-code ${remote} >/dev/null 2>&1
+#if [ $? -ne 0 ]
+#then
+#	echo "Remote ${remote} does not exist"
+#    exit 1
+#fi
+
+# update local master
+um(){
+git fetch origin
+num_changes=$(git rev-list HEAD...origin/master --count)
+echo "Num of changes: ${num_changes}"
+if [ "$num_changes" -gt "0" ]
+then
+    current_branch=$(git rev-parse --abbrev-ref HEAD) 
+    git checkout master
+    git pull
+    echo $current_branch
+    git checkout $current_branch
+fi
+}
+
+# Root path of Repo
+#rootpath=$(git rev-parse --show-toplevel)
+
+# Branch exists - Exit script if local branch does not exist
+#git rev-parse -q --verify ${branch} >/dev/null 2>&1
+#if [ $? -ne 0 ]
+#then
+#    echo "Branch ${branch} exists"
+#fi
