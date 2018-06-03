@@ -11,7 +11,9 @@ source utility/operations
 checkUncommittedChanges
 
 # 1. align your local master to the orgin one
+echo "1. updating local master.."
 updateLocalMaster
+echo "1. finished updating local master.."
 
 # 23, 142 etc.
 hotfixNumber=$1
