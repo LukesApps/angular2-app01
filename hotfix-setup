@@ -1,13 +1,16 @@
 #!/bin/bash
 
+## Checks
+# 1.Check whether there are uncommitted changes, exit 1
+if ! git diff-index --quiet HEAD --; then
+	echo "There are uncommited changes, commit or stash them before you use this script"
+	exit 1
+fi
+
 # 23, 142 etc.
 hotfixNumber=$1
 
-#check whether there are uncommitted changes
-#TODO
-
-# establish branch and tag name variables
-# current Git branch
+# establish current Git branch and define variables
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 devBranch=develop
 masterBranch=master
