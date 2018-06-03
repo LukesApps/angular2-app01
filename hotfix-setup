@@ -1,11 +1,13 @@
 #!/bin/bash
 
+### [ DEPENDENCIES ] ###
+source .utility/checks
+
+### [##############] ###
+
 ## Checks
 # 1.Check whether there are uncommitted changes, exit 1
-if ! git diff-index --quiet HEAD --; then
-	echo "There are uncommited changes, commit or stash them before you use this script"
-	exit 1
-fi
+check-uncommited-changes
 
 # 23, 142 etc.
 hotfixNumber=$1
