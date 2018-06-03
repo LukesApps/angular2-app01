@@ -25,6 +25,6 @@ releaseBranch=hotfix-$hotfixNumber
  
 # 2. create the release branch from the master branch
 echo Creating branch named hotfix-$1 from master branch..
-git checkout -b $releaseBranch $masterBranch
+git checkout -b $releaseBranch $masterBranch >/dev/null 2>&1
 
 echo Currently on branch hotfix-$1, you can now work at the fix
