@@ -41,7 +41,14 @@ testem.log
 .DS_Store
 Thumbs.db
 
+<<<<<<< HEAD
 #Scripts
 hotfix-push
 hotfix-setup
 utility/
+=======
+#Ignore scripts
+hotifx-push
+hotfix-setup
+/utility
+>>>>>>> master
