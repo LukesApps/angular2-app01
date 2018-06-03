@@ -7,7 +7,7 @@ source .utility/checks
 
 ## Checks
 # 1.Check whether there are uncommitted changes, exit 1
-check-uncommited-changes
+checkUncommittedChanges
 
 # 23, 142 etc.
 hotfixNumber=$1

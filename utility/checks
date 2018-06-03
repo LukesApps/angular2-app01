@@ -7,9 +7,9 @@
 #	exit 1
 #fi
 
-function check-uncommited-changes {
+function checkUncommittedChanges {
 	if ! git diff-index --quiet HEAD --; then
-		echo "There are uncommited changes on this repository."
+		echo "There are uncommited changes: commit or stash them before you continue"
 		exit 1
 	fi
 }
@@ -21,6 +21,21 @@ function check-uncommited-changes {
 #	echo "Remote ${remote} does not exist"
 #    exit 1
 #fi
+
+# update local master
+um(){
+git fetch origin
+num_changes=$(git rev-list HEAD...origin/master --count)
+echo "Num of changes: ${num_changes}"
+if [ "$num_changes" -gt "0" ]
+then
+    current_branch=$(git rev-parse --abbrev-ref HEAD) 
+    git checkout master
+    git pull
+    echo $current_branch
+    git checkout $current_branch
+fi
+}
 
 # Root path of Repo
 #rootpath=$(git rev-parse --show-toplevel)
