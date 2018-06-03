@@ -11,7 +11,7 @@ devBranch=develop
 masterBranch=master
 releaseBranch=release-$versionLabel
  
-# create the release branch from the -develop branch
+# create the release branch from the master branch
 git checkout -b $releaseBranch $masterBranch
  
 # file in which to update version number
