@@ -15,26 +15,13 @@ function checkUncommittedChanges {
 }
 
 # Remote exists - Exit script if remote does not exist
-#git ls-remote --exit-code ${remote} >/dev/null 2>&1
-#if [ $? -ne 0 ]
-#then
-#	echo "Remote ${remote} does not exist"
-#    exit 1
-#fi
-
-# update local master
-um(){
-git fetch origin
-num_changes=$(git rev-list HEAD...origin/master --count)
-echo "Num of changes: ${num_changes}"
-if [ "$num_changes" -gt "0" ]
-then
-    current_branch=$(git rev-parse --abbrev-ref HEAD) 
-    git checkout master
-    git pull
-    echo $current_branch
-    git checkout $current_branch
-fi
+function checkOriginExists {
+    git ls-remote --exit-code ${remote} >/dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+        echo "Remote ${remote} does not exist"
+        exit 1
+    fi
 }
 
 # Root path of Repo
