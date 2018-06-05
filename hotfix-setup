@@ -3,7 +3,6 @@
 ### [ DEPENDENCIES ] ###
 source utility/checks
 source utility/operations
-source utility/color_logger
 
 ### [##############] ###
 
