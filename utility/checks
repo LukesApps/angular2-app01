@@ -26,7 +26,6 @@ function checkOriginExists {
 
 # Root path of Repo
 #rootpath=$(git rev-parse --show-toplevel)
-
 # Branch exists - Exit script if local branch does not exist
 #git rev-parse -q --verify ${branch} >/dev/null 2>&1
 #if [ $? -ne 0 ]

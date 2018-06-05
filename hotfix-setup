@@ -14,7 +14,9 @@ set -e # exit if a function returns a non 0 value
 checkUncommittedChanges
 
 # 1. align your local master to the orgin one
+echo "1. updating local master.."
 updateLocalMaster
+echo "1. finished updating local master.."
 
 # 23, 142 etc.
 hotfixNumber=$1
@@ -24,7 +26,7 @@ branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 devBranch=develop
 masterBranch=master
 releaseBranch=hotfix-$hotfixNumber
- 
+
 # 2. create the release branch from the master branch
 echo Creating branch named hotfix-$1 from master branch..
 git checkout -b $releaseBranch $masterBranch >/dev/null 2>&1
