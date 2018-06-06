@@ -9,13 +9,14 @@ source scripts/lib/colored_logger
 
 usage()
 {
-    echo
-    echo "Usage: zz <script-name> <script-parameter>"
-    echo "  hotifx-setup:"
-    echo "    - prepares a branch from master to commit the the fix"
-    echo "      on."       
-    echo "  hotifx-push:"
-    echo "    - pushes the fix on master branch, rebasing develop"
+    log
+    log "Usage: zz <script-name> <script-parameter>"
+    log "  hotifx-setup:"
+    log "    - prepares a branch from master to commit the the fix"
+    log "      on."       
+    log "  hotifx-push:"
+    log "    - pushes the fix on master branch, rebasing develop"
+    log
 }
 
 # 1. Check whether the user is calling the script properly,
