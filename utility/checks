@@ -25,6 +25,10 @@ function checkOriginExists {
     fi
 }
 
+function checkGitRepo(){
+    git status >/dev/null 2>&1 || { log "Error: You're not in a git repository."; exit 1; }
+}
+
 # Root path of Repo
 #rootpath=$(git rev-parse --show-toplevel)
 
