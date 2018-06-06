@@ -30,13 +30,6 @@ usage()
 scriptName=$1
 scriptFirstParameter=$2
 
-#check for null inputs
-if [ -z "$1" || -z "$2" ]; then
-    log "Values passed to the script cannot be null!"
-    usage
-    exit 1
-fi
-
 #call the right script and pass the $2 argument
 case $1 in
     hotfix-setup )
