@@ -10,19 +10,12 @@ source lib/colored_logger
 usage()
 {
     echo
-    echo "Usage:"
-    echo "  gittask.sh new feature name_of_feature"
-    echo "    - Creates a new branch off from 'development' named"
-    echo "      'feature/name_of_feature'."
-    echo "  gittask.sh new release name_of_release"
-    echo "    - Creates a new branch off from 'development' named"
-    echo "      'release/name_of_release'."
-    echo "  gittask.sh new hotfix name_of_hotfix"
-    echo "    - Creates a new branch off from 'master' named"
-    echo "      'hotfix/name_of_hotfix'."
-    echo "  gittask.sh done"
-    echo "    - Merges current branch into master and/or development"
-    echo "      depending on if it's a feature, release or hotfix."
+    echo "Usage: zz <script-name> <script-parameter>"
+    echo "  hotifx-setup:"
+    echo "    - prepares a branch from master to commit the the fix"
+    echo "      on."       
+    echo "  hotifx-push:"
+    echo "    - pushes the fix on master branch, rebasing develop"
 }
 
 # 1. Check whether the user is calling the script properly,
@@ -33,31 +26,33 @@ usage()
 # first argument $1: script to call
 # second argument $2: parameter for the selected script
 
-# If "new", confirm that the required arguments were provided.
-if [ "$1" == "new" ] && [ -n "$2" ] && [ -n "$3" ]; then
+#VARIABLES#
+scriptName=$1
+scriptFirstParameter=$2
 
-    # Validate $3, only allow a-z (lower case), 0-9 and _ (underscore) in branch names.
-    [ "${3//[0-9a-z_]/}" = "" ] || { echo "Error: Branch names may only consist of a-z, 0-9 and underscore."; exit 1; }
-    case $2 in
-        feature )
-            git checkout development
-            git checkout -b "feature/$3"
-            exit 0
-            ;;
-        release )
-            git checkout development
-            git checkout -b "release/$3"
-            exit 0
-            ;;
-        hotfix )
-            git checkout master
-            git checkout -b "hotfix/$3"
-            exit 0
-            ;;
-        * )
-            echo "Error: You didn't specify feature, release or hotfix."
-            exit 1
-            ;;
-    esac
+#check for null inputs
+if [ -z "$1" || -z "$2" ]; then
+    log "Values passed to the script cannot be null!"
+    usage
+    exit 1
+fi
 
-
+#call the right script and pass the $2 argument
+case $1 in
+    hotfix-setup )
+        sh hotfix-setup $2
+        exit 0
+        ;;
+    hotfix-push )
+        sh hotfix-push $2
+        exit 0
+        ;;
+    help )
+        usage
+        exit 0
+        ;;
+    * )
+        log "Error: You didn't specify a script name, please type zz help to print the usage"
+        exit 1
+        ;;
+esac
