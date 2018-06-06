@@ -1,0 +1,10 @@
+#! 
+
+
+            git checkout master
+            git merge ${current}
+            git checkout development
+            git merge ${current}
+            git push origin development
+            delete_branch
+            exit 0

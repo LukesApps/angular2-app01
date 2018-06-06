@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ### [ DEPENDENCIES ] ###
-source lib/checks
-source lib/operations
-source lib/colored_logger
+source scripts/lib/checks
+source scripts/lib/operations
+source scripts/lib/colored_logger
 
 ### [##############] ###
 
@@ -40,11 +40,11 @@ fi
 #call the right script and pass the $2 argument
 case $1 in
     hotfix-setup )
-        sh hotfix-setup $2
+        sh scripts/hotfix-setup $2
         exit 0
         ;;
     hotfix-push )
-        sh hotfix-push $2
+        sh scripts/hotfix-push $2
         exit 0
         ;;
     help )
