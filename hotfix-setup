@@ -7,16 +7,18 @@ source utility/colored_logger
 
 ### [##############] ###
 
-log "1. Running back-end hotfix setup script"
+log " ############################################ "
+log " ### Running back-end hotfix setup script ### "
+log " ############################################ "
 
 ## Checks
 # 0.1.Check whether there are uncommitted changes, exit 1
 set -e # exit if a function returns a non 0 value
-log "2. Looking for uncommitted changes"
+log "Looking for uncommitted changes.."
 checkUncommittedChanges
 
 # 1. align your local master to the orgin one
-log "3. Updating local master"
+log "Updating local master.."
 updateLocalMaster
 
 # 23, 142 etc.
@@ -29,7 +31,7 @@ masterBranch=master
 releaseBranch=hotfix-$hotfixNumber
 
 # 2. create the release branch from the master branch
-log Creating branch named hotfix-$1 from master branch
+log "Creating branch named hotfix-$1 from master branch.."
 git checkout -b $releaseBranch $masterBranch >/dev/null 2>&1
 
-log Currently on branch hotfix-$1, you can now work at the fix
+log "Currently on branch hotfix-$1, you can now work at the fix"

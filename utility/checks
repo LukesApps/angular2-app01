@@ -9,9 +9,10 @@
 
 function checkUncommittedChanges {
 	if ! git diff-index --quiet HEAD --; then
-		echo "There are uncommited changes: commit or stash them before you continue"
+		log "There are uncommited changes: commit or stash them before you continue"
 		exit 1
 	fi
+    log "No changes found"
 }
 
 # Remote exists - Exit script if remote does not exist
