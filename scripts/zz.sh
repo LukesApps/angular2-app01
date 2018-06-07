@@ -52,11 +52,11 @@ case $1 in
             log "Error: $2 is not an hotfix number!" >&2; 
             exit 1
         fi
-        sh hotfix-setup $2
+        hotfix-setup $2
         exit 0
         ;;
     hotfix-push )
-        sh hotfix-push
+        hotfix-push $2
         exit 0
         ;;
     help )
