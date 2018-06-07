@@ -48,7 +48,7 @@ set -e
 case $1 in
     hotfix-setup )
         #check the parameter to be a number, else abort
-        if ! [[ $2 =~ '^[0-9]+$' ]] ; then
+        if [[ $2 =~ '^[0-9]+$' ]] ; then
             log "Error: $2 is not an hotfix number!" >&2; 
             exit 1
         fi
