@@ -1,5 +1,14 @@
 #! bin/bash
 
+RED='\033[0;31m'
+BLUE='\033[34m'
+PURPLE='\033[35m'
+YELLOW='\033[33m'
+
+NC='\033[0m' # No Color
+
+#printf "I ${RED}love${NC} Stack Overflow\n"
+
 # Basic log function, "=====> " print standard information
 function log(){
     printf "\033[34m [ $(date +"%D %T") ] ===>\033[1m\033[35m $1 \033[0m\n"
@@ -9,10 +18,29 @@ function info(){
     printf "\033[34m [ $(date +"%D %T") ] \033[1m\033[32m $1 \033[0m\n"
 }
 
-function warn(){
-    printf "\033[34m [ $(date +"%D %T") ] \033[1m\033[31m $1 \033[0m\n"
-}
-
 function logHeader(){
     log "Hotfix-Setup script started!!!"
+}
+
+usage(){
+    printf ""
+    printf "   ******** USAGE: ***********************************   "
+    printf "                                                         "
+    printf "  Usage: zz <script-name> <script-parameter>             "
+    printf "                                                         "
+    printf "  script-name                                            "
+    printf "    hotifx-setup:                                        "
+    printf "      - prepares a branch from master to commit the fix  "
+    printf "        on;                                              "       
+    printf "    hotifx-push:                                         "
+    printf "      - pushes the fix on master branch, rebasing develop"
+    printf "                                                         "
+    printf "  script-parameters                                      "
+    printf "    hotifx-setup:                                        "
+    printf "      - first and unique parameter is the hotfix number  "
+    printf "    hotifx-push:                                         "
+    printf "      - no arguments                                     "
+    printf "                                                         "
+    printf "   ***************************************************   "
+    printf ""
 }
