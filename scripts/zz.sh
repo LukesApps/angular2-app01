@@ -8,6 +8,7 @@ source scripts/colored_logger
 ### [##############] ###
 
 usage(){
+    info ""
     info "   ******** USAGE: ***********************************   "
     info "                                                         "
     info "  Usage: zz <script-name> <script-parameter>             "
@@ -26,6 +27,7 @@ usage(){
     info "      - no arguments                                     "
     info "                                                         "
     info "   ***************************************************   "
+    info ""
 }
 
 # 1. Check whether the user is calling the script properly,
