@@ -1,0 +1,23 @@
+#!/bin/bash
+
+### [ DEPENDENCIES ] ###
+#source checks
+
+### [##############] ###
+
+# update local master
+updateLocalMaster(){
+    checkOriginExists
+    git fetch origin
+    num_changes=$(git rev-list HEAD...origin/master --count)
+    #echo "Num of changes: ${num_changes}"
+    if [ "$num_changes" -gt "0" ]
+    then
+        #log "No changes found, updating master.."
+        current_branch=$(git rev-parse --abbrev-ref HEAD) 
+        git checkout master
+        git pull origin master
+        log "Branch master updated"
+        git checkout $current_branch
+    fi
+}

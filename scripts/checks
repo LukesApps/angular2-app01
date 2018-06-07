@@ -9,9 +9,10 @@
 
 function checkUncommittedChanges {
 	if ! git diff-index --quiet HEAD --; then
-		echo "There are uncommited changes: commit or stash them before you continue"
+		log "There are uncommited changes: commit or stash them before you continue"
 		exit 1
 	fi
+    log "No changes found"
 }
 
 # Remote exists - Exit script if remote does not exist
@@ -24,11 +25,14 @@ function checkOriginExists {
     fi
 }
 
+#Check we are in a git repo
+function checkGitRepo(){
+    git status >/dev/null 2>&1 || { log "Error: You're not in a git repository."; exit 1; }
+}
+
 # Root path of Repo
+function getRepoPath(){
+    checkGitRepo
+    return git rev-parse --show-toplevel
+}
 #rootpath=$(git rev-parse --show-toplevel)
-# Branch exists - Exit script if local branch does not exist
-#git rev-parse -q --verify ${branch} >/dev/null 2>&1
-#if [ $? -ne 0 ]
-#then
-#    echo "Branch ${branch} exists"
-#fi
