@@ -21,26 +21,3 @@ function info(){
 function logHeader(){
     log "Hotfix-Setup script started!!!"
 }
-
-usage(){
-    printf ""
-    printf "   ******** USAGE: ***********************************   "
-    printf "                                                         "
-    printf "  Usage: zz <script-name> <script-parameter>             "
-    printf "                                                         "
-    printf "  script-name                                            "
-    printf "    hotifx-setup:                                        "
-    printf "      - prepares a branch from master to commit the fix  "
-    printf "        on;                                              "       
-    printf "    hotifx-push:                                         "
-    printf "      - pushes the fix on master branch, rebasing develop"
-    printf "                                                         "
-    printf "  script-parameters                                      "
-    printf "    hotifx-setup:                                        "
-    printf "      - first and unique parameter is the hotfix number  "
-    printf "    hotifx-push:                                         "
-    printf "      - no arguments                                     "
-    printf "                                                         "
-    printf "   ***************************************************   "
-    printf ""
-}

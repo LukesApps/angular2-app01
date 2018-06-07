@@ -7,7 +7,28 @@ source scripts/colored_logger
 
 ### [##############] ###
 
-
+usage(){
+    info ""
+    info "   ******** USAGE: ***********************************   "
+    info "                                                         "
+    info "  Usage: zz <script-name> <script-parameter>             "
+    info "                                                         "
+    info "  script-name                                            "
+    info "    hotifx-setup:                                        "
+    info "      - prepares a branch from master to commit the fix  "
+    info "        on;                                              "       
+    info "    hotifx-push:                                         "
+    info "      - pushes the fix on master branch, rebasing develop"
+    info "                                                         "
+    info "  script-parameters                                      "
+    info "    hotifx-setup:                                        "
+    info "      - first and unique parameter is the hotfix number  "
+    info "    hotifx-push:                                         "
+    info "      - no arguments                                     "
+    info "                                                         "
+    info "   ***************************************************   "
+    info ""
+}
 
 # 1. Check whether the user is calling the script properly,
 # if it's not the case, print the help
