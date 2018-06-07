@@ -8,7 +8,7 @@ source scripts/colored_logger
 ### [##############] ###
 
 usage(){
-    info " ******************************************************* "
+    info "   ******** USAGE: ***********************************   "
     info "                                                         "
     info "  Usage: zz <script-name> <script-parameter>             "
     info "                                                         "
@@ -25,7 +25,7 @@ usage(){
     info "    hotifx-push:                                         "
     info "      - no arguments                                     "
     info "                                                         "
-    info " ******************************************************* "
+    info "   ***************************************************   "
 }
 
 # 1. Check whether the user is calling the script properly,
