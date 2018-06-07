@@ -1,22 +1,22 @@
 #!/bin/bash
 
 ### [ DEPENDENCIES ] ###
-source scripts/lib/checks
-source scripts/lib/operations
-source scripts/lib/colored_logger
+source checks
+source operations
+source colored_logger
 
 ### [##############] ###
 
 usage()
 {
-    log ""
+    log " *** "
     log "Usage: zz <script-name> <script-parameter>"
     log "  hotifx-setup:"
     log "    - prepares a branch from master to commit the fix"
     log "      on;"       
     log "  hotifx-push:"
     log "    - pushes the fix on master branch, rebasing develop"
-    log ""
+    log " *** "
 }
 
 # 1. Check whether the user is calling the script properly,
@@ -34,11 +34,11 @@ scriptFirstParameter=$2
 #call the right script and pass the $2 argument
 case $1 in
     hotfix-setup )
-        sh scripts/hotfix-setup $2
+        sh hotfix-setup $2
         exit 0
         ;;
     hotfix-push )
-        sh scripts/hotfix-push $2
+        sh hotfix-push $2
         exit 0
         ;;
     help )
