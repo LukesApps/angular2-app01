@@ -40,14 +40,21 @@ usage(){
 scriptName=$1
 scriptFirstParameter=$2
 
+set -e
+
 #call the right script and pass the $2 argument
 case $1 in
     hotfix-setup )
+        #check the parameter to be a number, else abort
+        if ! [[ $2 =~ '^[0-9]+$' ]] ; then
+            log "Error: Not a number" >&2; 
+            exit 1
+        fi
         sh hotfix-setup $2
         exit 0
         ;;
     hotfix-push )
-        sh hotfix-push $2
+        sh hotfix-push
         exit 0
         ;;
     help )
