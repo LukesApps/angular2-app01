@@ -7,16 +7,25 @@ source colored_logger
 
 ### [##############] ###
 
-usage()
-{
-    log " *** "
-    log "Usage: zz <script-name> <script-parameter>"
-    log "  hotifx-setup:"
-    log "    - prepares a branch from master to commit the fix"
-    log "      on;"       
-    log "  hotifx-push:"
-    log "    - pushes the fix on master branch, rebasing develop"
-    log " *** "
+usage(){
+    log " ******************************************************* "
+    log "                                                         "
+    log "  Usage: zz <script-name> <script-parameter>             "
+    log "                                                         "
+    log "  script-name                                                       "
+    log "    hotifx-setup:                                        "
+    log "      - prepares a branch from master to commit the fix  "
+    log "        on;                                              "       
+    log "    hotifx-push:                                         "
+    log "      - pushes the fix on master branch, rebasing develop"
+    log "                                                         "
+    log "  script-parameters                                      "
+    log "    hotifx-setup:                                        "
+    log "      - first and unique parameter is the hotfix number  "
+    log "    hotifx-push:                                         "
+    log "      - pushes the fix on master branch, rebasing develop"
+    log "                                                         "
+    log " ******************************************************* "
 }
 
 # 1. Check whether the user is calling the script properly,
