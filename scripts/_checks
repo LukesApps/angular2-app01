@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Current branch - Determine current git branch, store in $currentbranch, and exit if not on a branch
-#if ! currentbranch=$(git symbolic-ref --short -q HEAD)
-#then
-#	echo We are not currently on a branch.
-#	exit 1
-#fi
-
 function checkUncommittedChanges {
 	if ! git diff-index --quiet HEAD --; then
 		log "There are uncommited changes: commit or stash them before you continue"
@@ -20,7 +13,7 @@ function checkOriginExists {
     git ls-remote --exit-code ${remote} >/dev/null 2>&1
     if [ $? -ne 0 ]
     then
-        echo "Remote ${remote} does not exist"
+        log "Remote ${remote} does not exist"
         exit 1
     fi
 }
@@ -36,3 +29,7 @@ function getRepoPath(){
     return git rev-parse --show-toplevel
 }
 #rootpath=$(git rev-parse --show-toplevel)
+
+function checkBranchNameIsOk() {
+
+}

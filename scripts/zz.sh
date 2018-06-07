@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ### [ DEPENDENCIES ] ###
-source scripts/checks
-source scripts/operations
-source scripts/colored_logger
+source scripts/_checks
+source scripts/_operations
+source scripts/_colored-logger
 
 ### [##############] ###
 
