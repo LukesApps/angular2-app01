@@ -2,7 +2,7 @@
 
 # Basic log function, "=====> " print standard information
 function log(){
-    printf "\033[34m [ $(date +"%D %T") ] =====>\033[1m\033[35m $1 \033[0m\n"
+    printf "\033[34m [ $(date +"%D %T") ] ===>\033[1m\033[35m $1 \033[0m\n"
 }
 
 function logHeader(){
