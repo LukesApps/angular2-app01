@@ -17,7 +17,3 @@ function log(){
 function info(){
     printf "\033[34m [ $(date +"%D %T") ] \033[1m\033[32m $1 \033[0m\n"
 }
-
-function logHeader(){
-    log "Hotfix-Setup script started!!!"
-}

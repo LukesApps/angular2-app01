@@ -56,7 +56,7 @@ case $1 in
         exit 0
         ;;
     hotfix-push )
-        source scripts/hotfix-push $2
+        source scripts/hotfix-push
         exit 0
         ;;
     help )

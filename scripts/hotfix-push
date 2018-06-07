@@ -1,10 +1,48 @@
-#! 
+#!/bin/bash
 
+set -e
 
-            git checkout master
-            git merge ${current}
-            git checkout development
-            git merge ${current}
-            git push origin development
-            delete_branch
-            exit 0
+# Call this script when you have already called hotfix-setup
+# and finished working at your fix.
+# Then this will:
+#  - align the remote master to yours, 
+#  - rebase current branch on develop to migrate the fix
+
+log "Script hotfix-push started!!!"
+
+#There must be uncommitted changes, else abort
+if git diff-index --quiet HEAD --; then
+   log "There are not uncommitted changes, this script needs them in order to push them!"
+   log "Run zz help to print the usage"
+   exit 1
+fi
+
+log "Changes found, starting to align remote master.."
+
+#The current branch must match hotfix-#, else abort TODO
+#Get the current branch, assuming everything is fine
+currentBranch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+hotfixNumber=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,' | grep -o -E '[0-9]+')
+hotfixBranch=hotfix-$hotfixNumber
+
+log "Committing changes on $hotfixBranch.."
+
+#Commit changes
+git add .
+git commit -m "Fixed issue #$hotfixNumber"
+
+log "Merging $hotfixBranch into master.."
+
+#Checkout master and merge in safe way
+git checkout master
+git merge $hotfixBranch --no-ff --no-edit
+
+log "Merging $hotfixBranch into develop.."
+
+#Safe merge onto develop too
+git checkout develop
+git merge $hotfixBranch --no-ff --no-edit
+
+log "Finished."
+
+#Pull request on origin master?
