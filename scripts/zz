@@ -47,7 +47,7 @@ case $1 in
         ;;
     * )
         log "Error: You didn't specify a script name,"
-        log "please type zz help to print the usage. "
+        log "please type zz help for usage informations. "
         exit 1
         ;;
 esac
