@@ -34,7 +34,8 @@ function getRepoPath(){
 #Checks for diffs either on the working tree and in the index,
 #referred to the current branch, using the porcelain format for full stability
 function isIndexClean(){
-    #check if we have unstaged changes
+
+    #check if we have unstaged
     git status --branch --porcelain=v1 | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
     if [ $? -ne 1 ]
     then
@@ -44,8 +45,8 @@ function isIndexClean(){
         exit 1
     fi
 
-    #just grep results with [ or ]
-    git status --branch --porcelain=v1 | grep ".*[\[\]]+.*"
+    #look if we have commited changes
+    git status --branch --porcelain=v1 | grep ahead | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
     if [ $? -ne 0 ]
     then
         log " There are still commits in your local changes, "
