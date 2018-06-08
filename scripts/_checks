@@ -28,12 +28,9 @@ function getRepoPath(){
     checkGitRepo
     return git rev-parse --show-toplevel
 }
+
 #rootpath=$(git rev-parse --show-toplevel)
 
-function(){
-    git diff --exit-code
-}
-
-function checkBranchNameIsOk() {
+function (){
 
 }
