@@ -12,7 +12,7 @@ log "Script hotfix-push started!!!"
 
 #There must be uncommitted changes, else abort
 if git diff-index --quiet HEAD --; then
-   log "There are not uncommitted changes, this script needs them in order to push them!"
+   log "There are not uncommitted changes, abort."
    log "Run zz help to print the usage"
    exit 1
 fi
