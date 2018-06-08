@@ -20,7 +20,7 @@ function checkOriginExists {
 
 #Check we are in a git repo
 function checkGitRepo(){
-    git status >/dev/null 2>&1 || { log "Error: You're not in a git repository."; exit 1; }
+    git status >/dev/null 2>&1 || { log "Error: You're not in a git repository."; exit 1; } 
 }
 
 # Root path of Repo
@@ -29,6 +29,10 @@ function getRepoPath(){
     return git rev-parse --show-toplevel
 }
 #rootpath=$(git rev-parse --show-toplevel)
+
+function(){
+    git diff --exit-code
+}
 
 function checkBranchNameIsOk() {
 
