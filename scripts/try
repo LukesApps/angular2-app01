@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if ! git diff-index --cached --quiet --ignore-submodules HEAD --
+then
+   if [ $err = 0 ]
+   then
+      echo >&2 "Cannot $1: Your index contains uncommitted changes."
+   else
+      echo >&2 "Additionally, your index contains uncommitted changes."
+   fi
+   err=1
+fi
