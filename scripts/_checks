@@ -47,7 +47,7 @@ function isIndexClean(){
 
     #look if we have commited changes
     git status --branch --porcelain=v1 | grep ahead | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
-    if [ $? -ne 0 ]
+    if [ $? -eq 1 ]
     then
         log " There are still commits in your local changes, "
         log " please push or stash them before you continue. "
