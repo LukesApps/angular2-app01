@@ -33,7 +33,7 @@ function getRepoPath(){
 
 #Checks for diffs either on the working tree and in the index,
 #referred to the current branch, using the porcelain format for full stability
-function isIndexClean(){
+function checkCommittedFiles(){
 
     #check if we have unstaged
     git status --branch --porcelain=v1 | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
