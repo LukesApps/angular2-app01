@@ -34,6 +34,16 @@ function getRepoPath(){
 #Checks for diffs either on the working tree and in the index,
 #referred to the current branch, using the porcelain format for full stability
 function isIndexClean(){
+    #check if we have unstaged changes
+    git status --branch --porcelain=v1 | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
+    if [ $? -ne 1 ]
+    then
+        #we have untracked changes
+        log " There are changes in your working tree, "
+        log " please commit or stash them before you continue. "
+        exit 1
+    fi
+
     #just grep results with [ or ]
     git status --branch --porcelain=v1 | grep ".*[\[\]]+.*"
     if [ $? -ne 0 ]
