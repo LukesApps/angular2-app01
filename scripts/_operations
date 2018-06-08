@@ -8,6 +8,7 @@
 # update local master
 updateLocalMaster(){
     checkOriginExists
+    log "Fetching remote.."
     git fetch origin
     num_changes=$(git rev-list HEAD...origin/master --count)
     #echo "Num of changes: ${num_changes}"

@@ -1,0 +1,56 @@
+#!/bin/bash
+
+function checkUncommittedChanges {
+	if ! git diff-index --quiet HEAD --; then
+		log "There are uncommited changes: commit or stash them before you continue"
+		exit 1
+	fi
+    log "No changes found"
+}
+
+# Remote exists - Exit script if remote does not exist
+function checkOriginExists {
+    git ls-remote --exit-code ${remote} >/dev/null 2>&1
+    if [ $? -ne 0 ]
+    then
+        log "Remote ${remote} does not exist"
+        exit 1
+    fi
+}
+
+#Check we are in a git repo
+function checkGitRepo(){
+    git status >/dev/null 2>&1 || { log "Error: You're not in a git repository."; exit 1; } 
+}
+
+# Root path of Repo
+function getRepoPath(){
+    checkGitRepo
+    return git rev-parse --show-toplevel 
+}
+
+#rootpath=$(git rev-parse --show-toplevel)
+
+#Checks for diffs either on the working tree and in the index,
+#referred to the current branch, using the porcelain format for full stability
+function isIndexClean(){
+
+    #check if we have unstaged
+    git status --branch --porcelain=v1 | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
+    if [ $? -ne 1 ]
+    then
+        #we have untracked changes
+        log " There are changes in your working tree, "
+        log " please commit or stash them before you continue. "
+        exit 1
+    fi
+
+    #look if we have commited changes
+    git status --branch --porcelain=v1 | grep ahead | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
+    if [ $? -eq 1 ]
+    then
+        log " There are still commits in your local changes, "
+        log " please push or stash them before you continue. "
+        exit 1
+    fi
+}
