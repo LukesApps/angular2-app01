@@ -26,11 +26,20 @@ function checkGitRepo(){
 # Root path of Repo
 function getRepoPath(){
     checkGitRepo
-    return git rev-parse --show-toplevel
+    return git rev-parse --show-toplevel 
 }
 
 #rootpath=$(git rev-parse --show-toplevel)
 
-function (){
-
+#Checks for diffs either on the working tree and in the index,
+#referred to the current branch, using the porcelain format for full stability
+function isIndexClean(){
+    #just grep results with [ or ]
+    git status --branch --porcelain=v1 | grep ".*[\[\]]+.*"
+    if [ $? -ne 0 ]
+    then
+        log " There are still commits in your local changes, "
+        log " please push or stash them before you continue. "
+        exit 1
+    fi
 }
