@@ -5,7 +5,7 @@ function checkUncommittedChanges {
 		log "There are uncommited changes: commit or stash them before you continue"
 		exit 1
 	fi
-    log "No changes found"
+    log "Working tree clean"
 }
 
 # Remote exists - Exit script if remote does not exist
@@ -43,4 +43,5 @@ function checkCommittedChanges(){
         log " please push or stash them before you continue. "
         exit 1
     fi
+    
 }
