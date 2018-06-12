@@ -34,14 +34,12 @@ function getRepoPath(){
 #Checks for diffs either on the working tree and in the index,
 #referred to the current branch, using the porcelain format for full stability
 function checkCommittedChanges(){
-
-    #look if we have commited changes
-    git status --branch --porcelain=v1 | grep ahead | wc -l | awk '{$1=$1};1' >/dev/null 2>&1
-    if [ $? -ne 0 ]
+    #look if we have committed changes
+    local changes=$(git status --branch --porcelain=v1 | grep ahead | wc -l | awk '{$1=$1};1');
+    if [ $changes -ne 0 ]
     then
         log " There are still commits in your local changes, "
         log " please push or stash them before you continue. "
         exit 1
     fi
-    
 }
