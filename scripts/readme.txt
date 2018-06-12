@@ -1,6 +1,6 @@
 This command line tool has been designed to speed up and simplify some tasks
 
-usage: zz <script-name> [<script-parameter>]
+usage: zz <script-name> [<script-parameter>] 
 
 possible script names (see also: zz help):
    hotfix-setup      Setup for an hotfix, see below details
